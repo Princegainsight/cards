@@ -273,13 +273,22 @@
 
   <script>
     // Set initial PIN
-    function setInitialPIN() {
-      if (!localStorage.getItem('userPin')) {
+     function setInitialPIN() {
+    var existingPin = localStorage.getItem('userPin');
+    
+    if (existingPin === null || existingPin === "") {
         var pin = prompt('Set your PIN:');
-        localStorage.setItem('userPin', pin);
-      }
+        
+        // Check if the user pressed Cancel or entered an empty string
+        if (pin === null || pin.trim() === "") {
+            // Reload the page
+            location.reload();
+        } else {
+            // Store the new PIN in localStorage
+            localStorage.setItem('userPin', pin);
+        }
     }
-
+}
     // Function to render cards
     function renderCards() {
       var cardContainer = document.getElementById('cardsContainer');
