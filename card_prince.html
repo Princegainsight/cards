@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Vault</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+        .container {
+       margin: 0;
+  padding: 0;
+  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAABLKADAAQAAAABAAABLAAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgBLAEsAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMACQkJCQkJEAkJEBYQEBAWHhYWFhYeJh4eHh4eJi4mJiYmJiYuLi4uLi4uLjc3Nzc3N0BAQEBASEhISEhISEhISP/bAEMBCwwMEhESHxERH0szKjNLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS//dAAQAE//aAAwDAQACEQMRAD8A87py8/L602igA9qKc3971ptABRRTgp78UADdvpTaeQG6GmEEdaACiiigBy8AtTac3Hy+lNoAKKKKAHNyA1Npy8/L602gAoooAJ6UAOXv9KbTwAvU9aQqR70ANooooAOvFOb+6O1C8fN6U2gAooooAcvXB703pxRTm5+b1oAbRRRQAU5u1AUn2pSA3Q0AMooII60UAFOXgFqbTm4wtADaKKKAP//Q87ooAz0p20D7xoAF5BWgL3bijdj7oofrn1oANwH3RSEk9aSigApwY9+abRQA7CnpxSgbeT2plPJ2gCgBlFO+U+1IVIoASiilCk0AJ05p5GTkd6T5R70oJYEUAJhR15oLHoOKbRQAUoJHSkooAdkH7wo29xzTacvXPpQANwAtNp27P3hRtB+6aAG0UEY60YJ6UAFOXkFaNoH3jRux90UAG3ueKMgfdFDdc+tNoACSetFFFADgx780YU9OKbRQA8Lg5PamdeaeTtAFJ8p9qAG0UpUikoA//9Hz0seg4ptFFABThyuPSm0oODmgBKKVhg0lABRRRQA5Rzk9qaTk5px4XHrTaAClBI6UlFAD88bsc00knrS/wfjTaACgHBzRRQA5hg/Wm04crj0ptABRRRQAU48Lj1pFGTQTk5oASiiigBwYng80pYjgcU1eoob7xoASiiigBw5XFNpQcHNKwwaAG0UUUAFOUZP0ptO6L9aAEJyc0lFFACgkdKXcD1FNooA//9LzuiiigAoopy+p7UAKTjik3H0FN60UAO3+wo3n0FNooAe3I3CmUqnB56UMMGgBKKKKAHfwfjTad/B+NNoAKKKUDJoAcvA3Gk3ewpGOTSUAO3+wo3n0FNooAeDuyKZQODmnMOcjvQA2iiigBR1FDdTQOoob7xoASiiigApzcYFCjnJ7U0nJzQAUUUUAFObnBptOXkFaAG0UUUAFFFFAH//T89yD94Ube45ptHTpQAU48ALTlO7r2pCN3IOaAGUUYI60UAFFFFABTxyNp/CmhSaX5V6cmgBApNLhR15pSdy5H40ygB2/24owp6cU2igBSpHFKeBtH40oJVcmk+VvY0ANopSpFJQAUUUUAFPHI20wAnpTwNpyTQAynbfXinE7elR9etADtwH3RRuB+8KbRQA7b3HNNo6U9Tu4NACHhcetNp5G7kGmEEdaACiiigAoBwc0UoUmgBWHOfWkAJ6U8YxjrimFiaAFwo680bz2ptFAH//U87oopVGTigBTwuPWm0rHJpKAHbj35owp6Gm0UAO2nvxS5UdKR+o+lNoAUknrSUUUAKDg5pWGOR0NNpynPymgBtOUZ5PQUmDnFKx/hHagBCcnNJRRQAoJHSnZU9aZRQA7Ye3NLhR1pF7/AEptADix6Dim0UUAO6r9KbSqcGhhg4oASiiigAp3RfrSAZOKGOTQAlODHoeabRQA7CnpxRtPfim05u1ABlR05pCSetJRQAoODmhhg0lO6r9KAG0UUUAf/9XzunL904602lU4NACUUpGDikoAKKKKAHN2+lNpz9vpTaACiiigAoopyj+I0AP5x74qKl3HOaVh/EOhoAbRRRQAUUUUAOXv9KbTl7/Sm0AFFFFABTzjA3U1Rk4oY5NAC/J70fJ702igB4xg7aZSqcHNDDBoASiiigApzdqbTm7fSgBtFFFABTk602ndF+tADaKKKAP/1vO6KKKAHHlc+lNp6gjr3oJC8AUAIFPU8UZUdOaaST1ooAfndwetM6cUU/74wetADKKKKAFAycUrHPA6ClPyjA6mmUAFOU9j0NNooAUjBxSU8fMMdxTKACjrxR1p/wB0YHWgAzt4HWkyp68U2igBxUj3ptAJHSnghuCOaAE6Ln1ptPYE9KZQAUUUUAFO6r9KbT1BHJoAZTgpNKSFOAOaaST1oAX5R05o3Z6im0UAO2g/dNNII60U4Meh5oAQDJxSscmnDGMjjNMII60AJRRRQB//1/PdoH3jRux93im0UAHXrTm5Aam05f7p70ANooooAKKKKAH/AH/rQBtG401Rk/SnHD9OooAZ1ooooAKKKKADpTyM/MKZTxhOvU0AH3PrTKVhg0lABRRRQAU4cAtTevFOb+6O1ADelO3Z+8M02igB20H7po24+9SL1FDfeNAC7sfdFN69aKKAHHlQabTl64PemkYOKACiiigAoAycUU5eAWoAG649KQMRSUUAO+U+1Gxu1NooA//Q87ooooAKKKUDJxQA4ru5Hek2H1FIxyaSgB2w+oo2H1FNooAc3A2im048rn0ptAD/ALwyOtMo6dKeRuGR1oAZRRTx8oyetAB9zk9aZR160UAPX5htNJsPqKBwufWm0AO2H1FGw+optFADwu3mmUoODmlYY5HQ0ANooooAUdRQ3U0DqKG+8aAEooooAKc3OD60KM8noKQnJoASiiigApzcALTaceVz6UANooooAKKKKAP/0fPSpHvTaUEjpS5B+8KAG04cLn1o2+nNDHnHpQA2iiigAooooAcp5we9NIwcUU8gtgigBlKM54pcKOvNBY9BxQA/AznvUZznmkpwY9DzQA2gDJxTsKenFKBtBJoARjzgdqbRRQAUUUUAFOU/wmm0UABGDg0VJjcOetNyB90UACqc5NDKc5FNJJ60AkdKACgDJwKdkH7wp2MDjrQA1jj5RTaKKACiiigApynB+tNooACMHFFPILAEUmFHXmgBoBPSnbPU0Fj24ptAH//S87ooooAcvALUbs/eobjCjtTaAHbc/dNNwR1op27seaAG04KTSnC9BTSSetAC/KPelB3cHvTKKACinN/eHem0AFFFFAB1p5bbwKRePm9KbQA75T7UhUikpQSOlACUAE9KeMN1FIWPbigA2gfeNG7H3Rim0UALk5zSsP4h3ptOU44PQ0ANopSMHFAGTigBVH8R6CkySc0rHPA6Cm0AO3Z+8M0bQfumm0UABBHWinbj0PNKcLyBQA0KTS/KPekJJ60lADw2Tg96Z04opzc/N60ANooooA//0/O6cv8AePam05ecr60AN60UUUAFFFFADm7fSm05+30ptABRRRQA5eQVpuDTl4y1Jub1oATBowaXc3rS7m9aABuAFptObnDetNoAKKKKAHL3+lNpy9/pTaACiiigAooooAcPmGO9KflGO5pF4G4/hQeRuH40ANooooAKKKKACnN2ptObtQA2iiigApy8grTacvHzelADaKKKAP/U87oHFFFADm9R3ptOHIK/lQFJ68UANpQpNLlR05pCxPWgBzDPTmmUU7dn73NADaKdtB+6aFGDk9qABuAFptBOTmigAooooAcvIK02gHBzTmGTkd6AG0U7aB940buy8UAKox1700qR1pKUMRQAlFO+U9eKCpHvQA2lUZNJ14pzcDaPxoARjk+1CnBpKKAFYYPtSU4cjafwpp44NABRTgpNHyj3oAQKT0p5GenamFiaSgAop27PDc0bQfumgBtObgBaFGDk9qaTk5oAKKKKAP/V87p23ueKN2PujFN69aAH7lHQUj9abTuq49KAG0UUUAFFFFABUhOAAeaYoyfpQTk5oAXCnpxSEEdaSlDEUAJSgE9Kd8uN2KaWJoAXCjrzTgcggcVHSg4OaAEopWGDSUAFFFFABSgkdKSnKM8noKAHZA5PWmlT1HNITk5pOnSgAop4OeGoJ28LQAgU9TxTsgjI6io8560oODmgAJJ60lOYdx0NNoAKKKKACiilUZNAD84AB5puFPTikJyc0lACkEdaSlDEUuVPUUAf/9bzuiiigApVODSUUAKwwcUlObsKbQAUUUUAO6L9abTn65ptABRRRQA7+Cm07+Cm0AFFFFADuq/Sm05O5oyPSgBtFOyPSjI9KAGgZOBTmP8ACKUEHIAwaZQAUUUUAKvUUN1NC9RQ33jQAlFFFADlP8J6GkIwcUlPJAwCMmgBlFOyPSjI9KAG07ov1oyvpQ3ODQA2iiigAooooA//1/O6Kd8p68UhUigBKco5ye1Npx4XHrQA0nJzRRRQAUUUUAOHK49KbSg4OaGGDQAlFABPSnbQPvGgA/gptP3Dpjik2g/dNADaKCCOtKoyaAFPChabSk5OaSgAooooAAcHNOYc59abThyuPSgBtFFOCk+1ACL1FDfeNLlV6c0ZVuvBoAbRTipHvTaAHKOc+lNJyc048Lj1ptABRRRQAU4cgrTaAcHNABRTmGD9aaAT0oAKKdtA+8aNw7CgD//Q87pQSOlJRQA8EN1FBBJyOaTov1pvTpQAUU7dn7wo25+6aAG0U4KTR8o96AEAJ6U/AxzzimFiaFODQApY9uKbSkYOKSgAooooAcGPfmnYGMDjNMUZOKGOTQAEEdaSlDEUvyn2oAbRTip+tG0D7xoAbT1BHJ4pN2Puim9etADyQp4FNJJ60vVfpTaACiiigABI6U8EMeRTKd0X60AKwJ5HNMo+lO3Z+8M0ANop20H7poCk0ANpQCelL8o9zSFiaAH4GMHnFNLHoOKRTg0MMGgBKKKKAP/R87pQMnFJTl+6TQAjHJpKKKACiiigBz9qbTm6j6U2gAooooAceVz6U2np1xTKACiiigBw4XPrTac/XFNoAKKKKAHJ3+lNpyd/pTaACiiigBVODQRg4pKc3QGgBtFFFACgZOKVjk0q9CaZQAUUUUAFPbtTKc3b6UANooooAKd1XPpTacnXFADaKKKAP//Z");
+  background-repeat: repeat;
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"], select, button {
+      width: calc(100% - 20px);
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    select {
+      appearance: none;
+      padding-right: 20px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="%23333"><path d="M7 10l5 5 5-5z" /><path d="M0 0h24v24H0z" fill="none" /></svg>');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #cardsContainer {
+      margin-top: 20px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .front {
+      background-color: #E7E1CA;
+      font-size: 1.5rem;
+      color: #543510;
+    }
+
+    .back {
+      background-color: #E7E1CA;
+      color: #543510;
+      transform: rotateY(180deg);
+      text-align: left;
+      font-size: 1.2rem;
+    }
+
+    .add-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #CFCFCF;
+      color: black;
+      border: 2px solid #543510;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .add-btn:hover {
+      background-color: #393939;
+      color: white;
+    }
+
+    .clear-btn, .change-pin-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #CFCFCF;
+      color: black;
+      border: 2px solid #543510;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .clear-btn:hover, .change-pin-btn:hover {
+      background-color: #393939;
+      color: white;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      background-color: #87300D;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.8rem;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+    }
+
+    .delete-btn:hover {
+      background-color: grey;
+    }
+
+    /* Popup style */
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .popup-content {
+      background-color: #fefefe;
+      margin: 20% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    /* Close button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Add some responsiveness */
+    @media screen and (max-width: 768px) {
+      .container {
+        margin: 10px;
+        padding: 10px;
+      }
+
+      .popup-content {
+        width: 90%;
+        margin: 10% auto;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .container {
+        margin: 5px;
+        padding: 5px;
+      }
+
+      .popup-content {
+        width: 90%;
+        margin: 5% auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="color: Grey;font-size: 1.5rem;">Card Vault</h1>
+  
+    <button id="addBtn" class="add-btn">Add Card</button>
+    <div id="cardsContainer"></div>
+    <div id="myModal" class="popup">
+      <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Add Card</h2>
+        <form id="cardForm">
+          <label for="bankName">Bank Name:</label>
+          <input type="text" id="bankName" required>
+          <label for="cardNumber">Card Number:</label>
+          <input type="text" id="cardNumber" maxlength="16" required>
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" maxlength="3" required>
+          <label for="expiryMonth">Expiry Month:</label>
+          <input type="text" id="expiryMonth" maxlength="2" required>
+          <label for="expiryYear">Expiry Year:</label>
+          <input type="text" id="expiryYear" maxlength="4" required>
+          <label for="cardVariant">Card Variant:</label>
+          <input type="text" id="cardVariant" required>
+          <button type="submit">Add Card</button>
+        </form>
+      </div>
+    </div><br>
+    <p style="float: right; color: #87300D;font-size: 0.8rem;" id="changePinBtn" ><u>Change PIN</u></p>
+    <button id="clearStorageBtn" class="clear-btn">Clear All Data</button>
+
+  </div>
+
+  <script>
+    // Set initial PIN
+    function setInitialPIN() {
+      if (!localStorage.getItem('userPin')) {
+        var pin = prompt('Set your PIN:');
+        localStorage.setItem('userPin', pin);
+      }
+    }
+
+    // Function to render cards
+    function renderCards() {
+      var cardContainer = document.getElementById('cardsContainer');
+      cardContainer.innerHTML = '';
+      
+      var cards = JSON.parse(localStorage.getItem('cards')) || [];
+      cards.forEach(function(card, index) {
+        var cardDiv = document.createElement('div');
+        cardDiv.className = 'card';
+        
+        var cardInner = document.createElement('div');
+        cardInner.className = 'card-inner';
+        cardInner.dataset.index = index; // store card index
+        
+        var cardFront = document.createElement('div');
+        cardFront.className = 'front';
+        cardFront.textContent = card.bankName + ' ' + card.cardVariant;
+        
+        var cardBack = document.createElement('div');
+        cardBack.className = 'back';
+        cardBack.innerHTML = 'Card Number: ' + card.cardNumber + '<br>CVV: ' + card.cvv + '<br>Expiry: ' + card.expiryMonth + '/' + card.expiryYear;
+        
+        var deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.textContent = 'x';
+        deleteBtn.onclick = function(event) {
+          event.stopPropagation();
+          var pin = prompt('Enter PIN to delete card:');
+          if (pin === localStorage.getItem('userPin')) {
+            cards.splice(index, 1);
+            localStorage.setItem('cards', JSON.stringify(cards));
+            renderCards();
+          } else {
+            alert('Incorrect PIN.');
+          }
+        };
+
+        cardInner.appendChild(cardFront);
+        cardInner.appendChild(cardBack);
+        cardDiv.appendChild(cardInner);
+        cardDiv.appendChild(deleteBtn);
+        cardContainer.appendChild(cardDiv);
+
+        cardFront.onclick = function(event) {
+          event.stopPropagation();
+          var pin = prompt('Enter PIN to flip card:');
+          if (pin === localStorage.getItem('userPin')) {
+            document.querySelectorAll('.card').forEach(function(card) {
+              card.classList.remove('flipped');
+            });
+            cardDiv.classList.add('flipped');
+          } else {
+            alert('Incorrect PIN.');
+          }
+        };
+
+        cardBack.onclick = function(event) {
+          event.stopPropagation();
+          cardDiv.classList.remove('flipped');
+        };
+      });
+    }
+
+    // Add card
+    document.getElementById('cardForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var bankName = document.getElementById('bankName').value;
+      var cardNumber = document.getElementById('cardNumber').value;
+      var cvv = document.getElementById('cvv').value;
+      var expiryMonth = document.getElementById('expiryMonth').value;
+      var expiryYear = document.getElementById('expiryYear').value;
+      var cardVariant = document.getElementById('cardVariant').value;
+
+      var cards = JSON.parse(localStorage.getItem('cards')) || [];
+      cards.push({
+        bankName: bankName,
+        cardNumber: cardNumber,
+        cvv: cvv,
+        expiryMonth: expiryMonth,
+        expiryYear: expiryYear,
+        cardVariant: cardVariant
+      });
+      localStorage.setItem('cards', JSON.stringify(cards));
+      renderCards();
+      document.getElementById('myModal').style.display = 'none';
+    });
+
+    // Show add card modal
+    document.getElementById('addBtn').onclick = function() {
+      document.getElementById('myModal').style.display = 'block';
+    };
+
+    // Close modal
+    document.querySelector('.close').onclick = function() {
+      document.getElementById('myModal').style.display = 'none';
+    };
+
+    // Clear storage
+    document.getElementById('clearStorageBtn').onclick = function() {
+      var pin = prompt('Enter PIN to clear all data:');
+      if (pin === localStorage.getItem('userPin')) {
+        localStorage.removeItem('cards');
+        renderCards();
+      } else {
+        alert('Incorrect PIN.');
+      }
+    };
+
+    // Change PIN
+    document.getElementById('changePinBtn').onclick = function() {
+      var pin = prompt('Enter current PIN:');
+      if (pin === localStorage.getItem('userPin')) {
+        var newPin = prompt('Enter new PIN:');
+        localStorage.setItem('userPin', newPin);
+        alert('PIN changed successfully.');
+      } else {
+        alert('Incorrect PIN.');
+      }
+    };
+
+    // Initialize
+    setInitialPIN();
+    renderCards();
+  </script>
+</body>
+</html>
